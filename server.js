@@ -1,10 +1,14 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
+const db = require('./db');
 
 app.use(morgan('dev'));
+//parse data to json
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 if (process.env.NODE_ENV === 'production') {
